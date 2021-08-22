@@ -1,9 +1,12 @@
-FROM rust:1.31
+FROM rust:1.54
 
-WORKDIR /usr/src/myapp
-COPY . .
+COPY ./ ./
 
-RUN cargo run
-#RUN cargo install --path .
+EXPOSE 8000
 
-#CMD ["myapp"]
+# Build your program for release
+RUN cargo build
+RUN cargo build --release
+
+# Run the binary
+CMD ["./target/release/rest"]
