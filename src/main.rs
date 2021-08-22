@@ -2,20 +2,9 @@
 
 #[macro_use]
 extern crate rocket;
-#[macro_use]
-extern crate diesel;
-#[macro_use]
-extern crate rocket_sync_db_pools;
-#[macro_use]
-extern crate diesel_migrations;
 
 use askama::Template;
-use diesel::OptionalExtension;
-use diesel::{RunQueryDsl, QueryDsl};
 use dotenv::dotenv;
-use errors::CustomError;
-use models::Confession;
-use models::NewConfession;
 use rocket::Build;
 use rocket::Rocket;
 use rocket::fairing::AdHoc;
@@ -32,13 +21,8 @@ use std::env;
 use std::env::VarError;
 use std::num::ParseIntError;
 use std::path::PathBuf;
-use diesel::pg::PgConnection;
 use thiserror::Error;
 use serde::{Deserialize, Serialize};
-
-mod schema;
-mod models;
-mod errors;
 
 #[derive(Template)]
 #[template(path = "index.html")]
@@ -48,7 +32,7 @@ struct HomepageTemplate {
 }
 
 #[get("/")]
-async fn root() -> Result<content::Html<String>, CustomError> {
+async fn root() -> Result<content::Html<String>, NotFound<String>> {
     let template = HomepageTemplate {
         confession: Some(String::from("random text")),
         total_confessions: 23
