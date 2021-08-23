@@ -19,7 +19,6 @@ cargo install
 followed by
 ```
 cargo build
-
 ```
 Then
 
