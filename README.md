@@ -6,12 +6,23 @@ Rust project for ATJ
 
 Use the command:
 
-`docker-compose up`
+```
+docker-compose up
+```
 
 Or,
 
-`cargo install`
+```
+cargo install
+```
 
 followed by
+```
+cargo build
 
-`cargo run`
+```
+Then
+
+```
+cargo run
+```
