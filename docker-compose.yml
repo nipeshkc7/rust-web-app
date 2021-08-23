@@ -1,7 +1,9 @@
 version: "3.8"
 services:
   dev:
-    build: .
+    build:
+      context: .
+      target: build
     ports:
       - "8000:8000"
     command: cargo run 
