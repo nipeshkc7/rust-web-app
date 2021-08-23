@@ -9,10 +9,10 @@ RUN cargo build --release
 FROM debian:buster-slim
 
 # copy the build artifact from the build stage
-COPY --from=build ./target/release/companies .
+COPY --from=build ./target/release/rest .
 
 ENV ROCKET_ADDRESS=0.0.0.0
 EXPOSE 8000
 
 # set the startup command to run your binary
-CMD ["./companies"]
+CMD ["./rest"]
